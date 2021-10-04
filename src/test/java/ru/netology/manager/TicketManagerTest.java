@@ -19,7 +19,7 @@ class TicketManagerTest {
 
 
     @Test
-    void shouldSearchByFromTo() {
+    void shouldSearchByFromToAndSortPrice() {
         manager.add(ticket1);
         manager.add(ticket2);
         manager.add(ticket3);
@@ -30,6 +30,24 @@ class TicketManagerTest {
 
         Ticket[] actual = manager.searchByFromToAndSortPrice("DMD", "KIX");
         Ticket[] expected = new Ticket[]{ticket3, ticket1, ticket7};
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void shouldSearchByFromToAndSortPriceDouble() {
+        Ticket ticket8 = new Ticket(8, 58000, "DMD", "KIX", 750);
+
+        manager.add(ticket1);
+        manager.add(ticket2);
+        manager.add(ticket3);
+        manager.add(ticket4);
+        manager.add(ticket5);
+        manager.add(ticket6);
+        manager.add(ticket7);
+        manager.add(ticket8);
+
+        Ticket[] actual = manager.searchByFromToAndSortPrice("DMD", "KIX");
+        Ticket[] expected = new Ticket[]{ticket3, ticket1, ticket7, ticket8};
         assertArrayEquals(expected, actual);
     }
 
